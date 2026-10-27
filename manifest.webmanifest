@@ -1,0 +1,14 @@
+{
+  "name": "1978：破局者",
+  "short_name": "破局者",
+  "description": "一场关于改革、实践与发展的多线互动叙事。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#171714",
+  "theme_color": "#171714",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

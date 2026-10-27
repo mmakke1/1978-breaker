@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171714">
+  <meta name="description" content="一场关于改革、实践与发展的多线互动叙事。五个历史节点，选择你理解时代的方式。">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="1978：破局者">
+  <meta property="og:description" content="五个历史节点，三种以上应对。选择你理解时代的方式。">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <title>1978：破局者</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="grain" aria-hidden="true"></div>
+  <header class="topbar">
+    <button id="brand" class="brand" aria-label="返回封面">1978 <span>破局者</span></button>
+    <div class="timeline" aria-label="游戏进度"><span id="progressBar"></span></div>
+    <div class="top-actions">
+      <span id="chapterLabel">序章</span>
+      <button id="archiveBtn" class="icon-btn" title="历史档案" aria-label="打开历史档案">▤</button>
+      <button id="soundBtn" class="icon-btn" title="声音" aria-label="切换声音">♪</button>
+    </div>
+  </header>
+
+  <main id="app" aria-live="polite"></main>
+
+  <aside id="archive" class="drawer" aria-hidden="true">
+    <div class="drawer-head"><div><small>FIELD NOTES</small><h2>历史档案</h2></div><button id="closeArchive" class="icon-btn" aria-label="关闭">×</button></div>
+    <div class="drawer-body">
+      <p class="lead">五个节点，至少三种应对。选择会改变后续旁白、路线记录和结局；没有唯一的“标准答案”。</p>
+      <section><b>01 / 尊重知识与人才 · 1977</b><p>恢复高考为人才培养打开重要通道。游戏中的选拔方案是帮助讨论公平、效率与稳定的假设情境。</p></section>
+      <section><b>02 / 农村改革 · 1978</b><p>家庭联产承包责任制调动农民积极性。各地探索并非一夜完成，实践、政策与基层经验相互作用。</p></section>
+      <section><b>03 / 经济特区 · 1980</b><p>深圳等经济特区成为改革开放的窗口和试验场，探索利用外资、技术与市场机制。</p></section>
+      <section><b>04 / 城市经济体制改革 · 1984</b><p>改革从农村走向城市，扩大企业自主权、增强企业活力成为重要议题。</p></section>
+      <section><b>05 / 南方谈话 · 1992</b><p>计划和市场都是经济手段。中共十四大把建立社会主义市场经济体制确立为改革目标。</p></section>
+      <section><b>理论坐标 / 三个有利于</b><p>是否有利于发展社会主义社会生产力、增强社会主义国家综合国力、提高人民生活水平。</p></section>
+      <section><b>理论坐标 / 社会主义本质</b><p>解放和发展生产力，消灭剥削、消除两极分化，最终达到共同富裕。</p></section>
+      <div class="source-note">本作是教育向互动叙事。场景为原创档案版画，不是历史照片复原；人物对白经过艺术化压缩。部分决策选项为讨论用的假设方案，不代表历史人物真实选择。</div>
+    </div>
+  </aside>
+  <div id="scrim" class="scrim"></div>
+
+  <template id="coverTemplate">
+    <section class="screen cover-screen">
+      <canvas class="scene-canvas" data-scene="cover"></canvas>
+      <div class="cover-copy">
+        <div class="case-label">绝密 · 思想解放档案 / 001</div>
+        <h1><span>1978</span>破局者</h1>
+        <p id="typewriter" class="typewriter"></p>
+        <button class="primary-btn" data-action="start"><span>点击进入历史</span><i>→</i></button>
+      </div>
+      <div class="cover-foot"><span>一场关于选择、实践与发展的互动叙事</span><span>建议佩戴耳机 · 约 8 分钟</span></div>
+    </section>
+  </template>
+
+  <template id="chapterTemplate">
+    <section class="screen chapter-screen">
+      <div class="visual-pane"><canvas class="scene-canvas"></canvas><div class="visual-caption"></div><div class="year-mark"></div></div>
+      <article class="story-pane">
+        <div class="chapter-kicker"></div><h2></h2><p class="branch-text"></p><p class="story-text"></p>
+        <div class="status-panel" aria-label="路线取向"></div>
+        <div class="decision-label"><span>你的决定</span><i></i></div>
+        <div class="choices"></div>
+        <p class="footnote"></p>
+      </article>
+    </section>
+  </template>
+
+  <template id="resultTemplate">
+    <section class="screen result-screen">
+      <canvas class="scene-canvas"></canvas>
+      <div class="result-copy"><div class="result-index"></div><div class="stamp"></div><h2></h2><p></p><div class="consequence"></div><blockquote></blockquote><button class="primary-btn"><span></span><i>→</i></button></div>
+    </section>
+  </template>
+
+  <template id="endingTemplate">
+    <section class="screen ending-screen">
+      <canvas class="scene-canvas" data-scene="ending"></canvas>
+      <div class="ending-copy"><div class="case-label">FINAL ARCHIVE / 1992</div><p class="eyebrow">五个节点 · 你的路线已归档</p><h2 id="endingTitle"></h2><p id="endingText" class="ending-text"></p><div class="route-summary"></div><div class="achievements"></div><div class="ending-actions"><button class="primary-btn" data-action="name"><span>生成我的见证卡</span><i>→</i></button><button class="secondary-btn" data-action="share">分享我的路线</button><button class="secondary-btn" data-action="restart">重新体验</button></div></div>
+    </section>
+  </template>
+
+  <dialog id="nameDialog">
+    <form method="dialog"><button class="dialog-close" value="cancel" aria-label="关闭">×</button><small>PERSONAL ARCHIVE</small><h2>留下你的名字</h2><p>它将印在专属见证卡上，只保存在你的设备中。</p><label>见证者姓名<input id="playerName" maxlength="12" placeholder="请输入姓名" autocomplete="name"></label><button id="makePoster" class="primary-btn" value="default"><span>生成见证卡</span><i>→</i></button></form>
+  </dialog>
+  <dialog id="posterDialog"><div class="poster-wrap"><button class="dialog-close" data-action="close-poster" aria-label="关闭">×</button><canvas id="poster" width="900" height="1200"></canvas><div class="poster-actions"><button class="secondary-btn" data-action="restart">重新开始</button><button class="primary-btn" data-action="download"><span>保存海报</span><i>↓</i></button></div></div></dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
